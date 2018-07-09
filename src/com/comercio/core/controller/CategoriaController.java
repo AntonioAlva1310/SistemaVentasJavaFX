@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
 
 
 public class CategoriaController implements Initializable {
-    
+    private enum ACCIONES {NUEVO, EDITAR};    
+  
   @FXML private TableView<Categoria> tblCategorias;
   @FXML private TableColumn<Categoria,String> colDescripcionc;
   @FXML private TableColumn<Categoria,Number> colCodigo;
@@ -27,8 +28,11 @@ public class CategoriaController implements Initializable {
   @FXML private Button btnGuardar;
   @FXML private Button btnCancelar;
   @FXML private Button btnEliminar;
+  @FXML private Button btnEditar;
+  private ACCIONES accion;
  private ObservableList<Categoria> listaCategorias;
   private  CategoriaDaoImpl categoriaDao= new CategoriaDaoImpl();
+  private Categoria elementoSeleccionado;
     
 
     @Override
@@ -38,9 +42,19 @@ public class CategoriaController implements Initializable {
     enlazarColumnasc();//To change body of generated methods, choose Tools | Templates.
     }
     
+    public void seleccionarElemento(){//me muestra el elemento seleccionado en el cuadro de texto 
+        if(tblCategorias.getSelectionModel().getSelectedItem()!=null){
+        elementoSeleccionado= tblCategorias.getSelectionModel().getSelectedItem();
+        txtDescripcion.setText(elementoSeleccionado.getDescripcion());
+        
+        
+          }
+    }
+    
     public void getCategorias(){
         
     listaCategorias= FXCollections.observableArrayList(categoriaDao.findAllCategoria());
+   
     }
     
     public void enlazarDatosc(){
@@ -55,29 +69,48 @@ public class CategoriaController implements Initializable {
     }
      public void nuevo(){
 
-     txtDescripcion.setDisable(false);
+     txtDescripcion.setEditable(true);
+     txtDescripcion.setText("");
     btnNuevo.setDisable(true);
     btnGuardar.setDisable(false);
     btnCancelar.setDisable(false);
     btnEliminar.setDisable(false);
+    accion= ACCIONES.NUEVO;
     
 }
      public void guardar(){
          
-          try {  Categoria categoria = new Categoria();
+          try {  
+              switch (accion){
+                  case NUEVO:     
+    Categoria categoria = new Categoria();
     categoria.setDescripcion(txtDescripcion.getText());
     categoriaDao.saveCategoria(categoria);
     listaCategorias.add(categoria);
-    txtDescripcion.setDisable(true);
+    
+    break;
+                  case EDITAR:
+          elementoSeleccionado.setDescripcion(txtDescripcion.getText());
+          categoriaDao.saveCategoria(elementoSeleccionado);
+          listaCategorias.set(tblCategorias.getSelectionModel().getSelectedIndex(), elementoSeleccionado);
+          break;
+              }
+              
+    txtDescripcion.setEditable(false);
+     txtDescripcion.setText("");
     btnNuevo.setDisable(false);
     btnGuardar.setDisable(true);
     btnEliminar.setDisable(false);
     btnCancelar.setDisable(true);
+    btnEditar.setDisable(false);
+              
   }catch (Exception e){
       
       e.printStackTrace();
   }
-     }
+}
+
+     
   
          public void cancelar(){
              
@@ -86,7 +119,7 @@ public class CategoriaController implements Initializable {
          btnNuevo.setDisable(false);
          btnGuardar.setDisable(true);
          btnEliminar.setDisable(false);
-       
+         btnEditar.setDisable(false);
          
          }
          public void eliminar(){
@@ -102,10 +135,36 @@ public class CategoriaController implements Initializable {
                     
                     JOptionPane.showMessageDialog(null, "Debe seleccionar un elemento");
                 }
-             
-             
+             txtDescripcion.setText("");
+             txtDescripcion.setText("");
+         btnCancelar.setDisable(true);
+         btnNuevo.setDisable(false);
+         btnGuardar.setDisable(true);
+         btnEliminar.setDisable(false);
+         btnEditar.setDisable(false);
              }
          
      }
+         
+         public void modificar(){
+        if( tblCategorias.getSelectionModel().getSelectedItem() != null){
+            
+            
+        
+         txtDescripcion.setEditable(true);
+         btnNuevo.setDisable(true);
+         btnEliminar.setDisable(true);
+         btnEditar.setDisable(true);
+         btnGuardar.setDisable(false);
+         btnCancelar.setDisable(false);
+         accion = ACCIONES.EDITAR;
+        }else{
+                JOptionPane.showMessageDialog(null,"Debe seleccionar un registro");
+                                }
+         
+        
+         }
+
+
      
 }
