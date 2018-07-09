@@ -33,8 +33,8 @@ public class Principal extends Application {
        
        //mostrarHelloWorld();
        //mostrarRelacionar();
- //  mostrarVentanaProductos();
-   mostrarVentanaCategorias();
+//mostrarVentanaProductos();
+mostrarVentanaCategorias();
         this.escenarioPrincipal.show();
     }
 
