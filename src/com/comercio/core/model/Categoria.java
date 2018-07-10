@@ -36,9 +36,9 @@ public class Categoria implements Serializable {
         this.descripcion = new SimpleStringProperty (descripcion);
     }
 
-    @Override
+   @Override
     public String toString() {
-        return "Categoria{" + "codigoCategoria=" + codigoCategoria + ", descripcion=" + descripcion.get() + '}';
+        return   codigoCategoria.get() + " | "  + descripcion.get();
     }
         
   @Id

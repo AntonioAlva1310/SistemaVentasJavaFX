@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.comercio.core.sistema;
 
 import com.comercio.core.controller.CategoriaController;
@@ -33,8 +29,8 @@ public class Principal extends Application {
        
        //mostrarHelloWorld();
        //mostrarRelacionar();
- //  mostrarVentanaProductos();
-   mostrarVentanaCategorias();
+mostrarVentanaProductos();
+//mostrarVentanaCategorias();
         this.escenarioPrincipal.show();
     }
 
