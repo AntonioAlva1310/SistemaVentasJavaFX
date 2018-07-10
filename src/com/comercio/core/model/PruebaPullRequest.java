@@ -12,6 +12,7 @@ package com.comercio.core.model;
 public class PruebaPullRequest {
     public void imprimir(){
         
+        System.out.println("hola mundo otra vez ");
         System.out.println("hola mundo");
     }
                          
