@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="VentasSistema.jar" size="25158" download="eager" />
+    <jar href="VentasSistema.jar" size="25106" download="eager" />
     <jar href="lib\antlr-2.7.7.jar" size="445288" download="eager" />
     <jar href="lib\byte-buddy-1.8.0.jar" size="2991785" download="eager" />
     <jar href="lib\byte-buddy-1.8.12.jar" size="2970261" download="eager" />

@@ -37,8 +37,6 @@ public class ProductoController implements Initializable{
     @FXML private TextField txtPrecioUnitario;
     @FXML private TextField txtPrecioMayoristas;
     @FXML private TextField txtExistencias;
-   // @FXML private TextField txtCategorias;
-    //@FXML private ChoiceBox choiceCategorias;
     @FXML private TextField txtImagen;
     @FXML private Button btnNuevo;
     @FXML private Button btnCancelar;
@@ -89,35 +87,37 @@ public class ProductoController implements Initializable{
 
     public void nuevo(){
         
-    txtDescripcion.setDisable(false);
-    txtPrecioUnitario.setDisable(false);
-    txtPrecioMayoristas.setDisable(false);
-    txtExistencias.setDisable(false);
-    txtImagen.setDisable(false);
+    txtDescripcion.setEditable(true);
+    txtPrecioUnitario.setEditable(true);
+    txtPrecioMayoristas.setEditable(true);
+    txtExistencias.setEditable(true);
+    txtImagen.setEditable(true);
+    cbxCategorias.setDisable(false);
    
     
     btnNuevo.setDisable(true);
     btnGuardar.setDisable(false);
     btnCancelar.setDisable(false);
     btnEliminar.setDisable(true);
+    
     accion= ACCIONES.NUEVO;
 }
 public void guardar(){
     
-  try {  
+  
      
          
-      // if (cbxCategorias.getSelectionModel().getSelectedItem()== null){
+       if (cbxCategorias.getSelectionModel().getSelectedItem()== null){
            
-          // JOptionPane.showMessageDialog(null, "Debe seleccionar una categoria");
-      // }else if (txtDescripcion.getText().isEmpty()){
+           JOptionPane.showMessageDialog(null, "Debe seleccionar una categoria");
+      }else if (txtDescripcion.getText().isEmpty()){
            
-          // JOptionPane.showMessageDialog(null, "Debe ingresar una descripcion");
-     //  }else{
-           
+           JOptionPane.showMessageDialog(null, "Debe ingresar una descripcion");
+      }else{
+         try {    
      
-      //  switch (accion){
-          //case NUEVO:
+      switch (accion){
+          case NUEVO:
             Producto producto = new Producto();
            producto.setCategoria((Categoria) cbxCategorias.getSelectionModel().getSelectedItem());
            producto.setDescripcion(txtDescripcion.getText());
@@ -127,9 +127,9 @@ public void guardar(){
            producto.setImagen(txtImagen.getText());
            productoDao.saveProducto(producto);
            listaProductos.add(producto);
-       //break;
+       break;
            
-          /*case EDITAR:    
+          case EDITAR:    
          elementoSeleccionado.setDescripcion(txtDescripcion.getText());
          elementoSeleccionado.setPrecioUnitario(Double.parseDouble(txtPrecioUnitario.getText()));
          elementoSeleccionado.setPrecioMayorista(Double.parseDouble(txtPrecioMayoristas.getText()));
@@ -142,39 +142,43 @@ public void guardar(){
            
         }
   
-       */
+       
            
-          txtDescripcion.setDisable(true);
-           txtPrecioUnitario.setDisable(true);
-          txtPrecioMayoristas.setDisable(true);
-          txtExistencias.setDisable(true);
-          txtImagen.setDisable(true);
+          txtDescripcion.setEditable(false);
+           txtPrecioUnitario.setEditable(false);
+          txtPrecioMayoristas.setEditable(false);
+          txtExistencias.setEditable(false);
+          txtImagen.setEditable(false);
           btnNuevo.setDisable(false);
           btnGuardar.setDisable(true);
           btnEliminar.setDisable(false);
           btnCancelar.setDisable(true);
           btnEditar.setDisable(false);
+       cbxCategorias.setDisable(false);
        
-       //}
   }catch (Exception e){
       
       e.printStackTrace();
   }
   
+      }
 }
 
  public void cancelar(){
      
      txtDescripcion.setText("");
-     txtDescripcion.setDisable(true);
-     txtPrecioUnitario.setDisable(true);
-    txtPrecioMayoristas.setDisable(true);
-    txtExistencias.setDisable(true);
-    txtImagen.setDisable(true);
+     txtDescripcion.setEditable(false);
+     txtPrecioUnitario.setEditable(false);
+    txtPrecioMayoristas.setEditable(false);
+    txtExistencias.setEditable(false);
+    txtImagen.setEditable(false);
+    cbxCategorias.setDisable(true);
      btnNuevo.setDisable(false);
      btnGuardar.setDisable(true);
      btnCancelar.setDisable(true);
     btnEliminar.setDisable(false);
+    btnEditar.setDisable(false);
+    
    
  }
   
@@ -226,6 +230,11 @@ public void guardar(){
          if (tblProductos.getSelectionModel().getSelectedItem() != null){
              
              txtDescripcion.setEditable(true);
+              txtPrecioUnitario.setEditable(true);
+    txtPrecioMayoristas.setEditable(true);
+    txtExistencias.setEditable(true);
+    txtImagen.setEditable(true);
+    cbxCategorias.setDisable(false);
              btnNuevo.setDisable(true);
              btnEliminar.setDisable(true);
             btnEditar.setDisable(true);
