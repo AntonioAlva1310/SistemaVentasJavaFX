@@ -22,34 +22,34 @@ import javax.persistence.Table;
 @NamedQueries({@NamedQuery(name="Rol.findAll", query= "from Rol")})
 public class Rol implements Serializable{
     
-    private final IntegerProperty codigo;
+    private final IntegerProperty codigoRol;
     private final StringProperty descripcion;
     private Set<Usuario> usuarios;
     
     public Rol () {
         
-        this.codigo= new SimpleIntegerProperty();
+        this.codigoRol= new SimpleIntegerProperty();
         this.descripcion= new SimpleStringProperty();
         
     }
-    public Rol(int  codigo, String descripcion){
+    public Rol(int  codigoRol, String descripcion){
         
-        this.codigo= new SimpleIntegerProperty(codigo);
+        this.codigoRol= new SimpleIntegerProperty(codigoRol);
         this.descripcion= new SimpleStringProperty(descripcion);
         
 
     }
-     public IntegerProperty codigo() {
-        return codigo;
+     public IntegerProperty codigoRol() {
+        return codigoRol;
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="codigo_rol")
     public int getCodigo(){
-        return this.codigo.get();
+        return codigoRol.get();
     }
-    public void setCodigo(int codigo){
-        this.codigo.set(codigo);
+    public void setCodigo(int codigRol){
+        this.codigoRol.set(codigRol);
     }
     @Column(name="descripcion")
     public String getDescripcion(){

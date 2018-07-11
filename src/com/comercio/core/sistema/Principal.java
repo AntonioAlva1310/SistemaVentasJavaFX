@@ -3,6 +3,8 @@ package com.comercio.core.sistema;
 
 import com.comercio.core.controller.CategoriaController;
 import com.comercio.core.controller.ProductoController;
+import com.comercio.core.controller.RolController;
+import com.comercio.core.controller.UsuarioController;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,7 +31,9 @@ public class Principal extends Application {
        
        //mostrarHelloWorld();
        //mostrarRelacionar();
-mostrarVentanaProductos();
+//mostrarVentanaProductos();
+mostrarVentanaRoles();
+//mostrarVentanaUsuarios();
 //mostrarVentanaCategorias();
         this.escenarioPrincipal.show();
     }
@@ -51,12 +55,34 @@ mostrarVentanaProductos();
             e.printStackTrace();
         }
     }
-    
+     
     public void mostrarVentanaCategorias(){
         
         try{
             CategoriaController categoriaController= (CategoriaController)
                                     cambiarEscena("CategoriasView.fxml",600,400);
+        }catch (Exception e){
+        
+        e.printStackTrace();
+    }
+    }
+    
+    public void mostrarVentanaRoles(){
+        
+        try{
+            RolController rolController= (RolController)
+                                    cambiarEscena("RolesView.fxml",600,400);
+        }catch (Exception e){
+        
+        e.printStackTrace();
+    }
+    }
+    
+     public void mostrarVentanaUsuarios(){
+        
+        try{
+            UsuarioController usuarioController= (UsuarioController)
+                                    cambiarEscena("UsuariosView.fxml",600,400);
         }catch (Exception e){
         
         e.printStackTrace();

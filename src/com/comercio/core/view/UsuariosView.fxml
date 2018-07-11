@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comercio.core.controller.UsuarioController">
+   <children>
+      <TableView fx:id="tblUsuarios" layoutX="82.0" layoutY="100.0" prefHeight="230.0" prefWidth="450.0">
+        <columns>
+          <TableColumn fx:id="colCodigo" prefWidth="60.0" text="Cod usu" />
+          <TableColumn fx:id="colEmail" prefWidth="75.0" text="email" />
+            <TableColumn fx:id="colLogin" prefWidth="90.0" text="login" />
+            <TableColumn fx:id="colNombre" prefWidth="75.0" text="nombre" />
+            <TableColumn fx:id="colPassword" prefWidth="75.0" text="password" />
+            <TableColumn fx:id="colRol" prefWidth="75.0" text="Rol" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
