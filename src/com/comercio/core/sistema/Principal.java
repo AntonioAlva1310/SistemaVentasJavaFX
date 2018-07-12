@@ -1,12 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.comercio.core.sistema;
 
 import com.comercio.core.controller.CategoriaController;
 import com.comercio.core.controller.ProductoController;
+import com.comercio.core.controller.RolController;
+import com.comercio.core.controller.UsuarioController;
+import com.comercio.core.dao.RolDaoImpl;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,16 +24,19 @@ import javafx.stage.Stage;
 public class Principal extends Application {
     private Stage escenarioPrincipal;
     private final String PAQUETE_VISTA = "/com/comercio/core/view/";
-    
+    private RolDaoImpl prueba = new RolDaoImpl();
     
     public void start(Stage escenarioPrincipal) {
         this.escenarioPrincipal = escenarioPrincipal;
         this.escenarioPrincipal.setTitle("Sistema Ventas V 1.0");
-       
+        
        //mostrarHelloWorld();
        //mostrarRelacionar();
- //  mostrarVentanaProductos();
-   mostrarVentanaCategorias();
+//mostrarVentanaProductos();
+//mostrarVentanaRoles();
+mostrarVentanaUsuarios();
+//mostrarVentanaCategorias();
+
         this.escenarioPrincipal.show();
     }
 
@@ -55,7 +57,7 @@ public class Principal extends Application {
             e.printStackTrace();
         }
     }
-    
+     
     public void mostrarVentanaCategorias(){
         
         try{
@@ -66,6 +68,29 @@ public class Principal extends Application {
         e.printStackTrace();
     }
     }
+    
+    public void mostrarVentanaRoles(){
+        
+        try{
+            RolController rolController= (RolController)
+                                    cambiarEscena("RolesView.fxml",600,400);
+        }catch (Exception e){
+        
+        e.printStackTrace();
+    }
+    }
+    
+     public void mostrarVentanaUsuarios(){
+        
+        try{
+            UsuarioController usuarioController= (UsuarioController)
+                                    cambiarEscena("UsuariosView.fxml",800,500);
+        }catch (Exception e){
+        
+        e.printStackTrace();
+         }
+    }
+    
     //Metodo para cambiar el escenario principal
     public Initializable cambiarEscena(String fxml, int ancho, int alto) throws IOException{
         Initializable resultado = null;

@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comercio.core.controller.ProductoController">
    <children>
-      <TableView fx:id="tblProductos" layoutX="37.0" layoutY="251.0" prefHeight="223.0" prefWidth="627.0">
+      <TableView fx:id="tblProductos" layoutX="37.0" layoutY="251.0" onKeyReleased="#seleccionarElemento" onMouseClicked="#seleccionarElemento" prefHeight="223.0" prefWidth="627.0">
          <columns>
             <TableColumn fx:id="colCodigo" prefWidth="108.0" text="Codigo Producto" />
             <TableColumn fx:id="colDescripcion" prefWidth="108.0" text="Descripcion" />
@@ -21,7 +21,7 @@
          </columns>
       </TableView>
       <Button fx:id="btnNuevo" layoutX="335.0" layoutY="486.0" mnemonicParsing="false" onAction="#nuevo" prefHeight="25.0" prefWidth="73.0" text="Nuevo" />
-      <Button fx:id="btnGuardar" layoutX="417.0" layoutY="486.0" mnemonicParsing="false" onAction="#guardar" prefHeight="25.0" prefWidth="73.0" text="Guardar" />
+      <Button fx:id="btnGuardar" disable="true" layoutX="417.0" layoutY="486.0" mnemonicParsing="false" onAction="#guardar" prefHeight="25.0" prefWidth="73.0" text="Guardar" />
       <Button fx:id="btnCancelar" layoutX="496.0" layoutY="486.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="25.0" prefWidth="73.0" text="Cancelar" />
       <Button fx:id="btnEliminar" layoutX="576.0" layoutY="486.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="25.0" prefWidth="73.0" text="Eliminar" />
       <Label layoutX="91.0" layoutY="63.0" text="Producto" />
@@ -29,12 +29,13 @@
       <Label layoutX="44.0" layoutY="109.0" text="Precio Mayoristas" />
       <Label layoutX="81.0" layoutY="151.0" text="Existencias" />
       <Label layoutX="417.0" layoutY="63.0" text="Imagen" />
-      <TextField fx:id="txtDescripcion" disable="true" layoutX="149.0" layoutY="59.0" prefHeight="25.0" prefWidth="194.0" />
-      <TextField fx:id="txtPrecioUnitario" disable="true" layoutX="472.0" layoutY="105.0" prefHeight="25.0" prefWidth="194.0" />
-      <TextField fx:id="txtPrecioMayoristas" disable="true" layoutX="149.0" layoutY="105.0" prefHeight="25.0" prefWidth="194.0" />
-      <TextField fx:id="txtExistencias" disable="true" layoutX="149.0" layoutY="147.0" prefHeight="25.0" prefWidth="194.0" />
-      <TextField fx:id="txtImagen" disable="true" layoutX="472.0" layoutY="59.0" prefHeight="25.0" prefWidth="194.0" />
-      <ComboBox fx:id="cbxCategorias" layoutX="472.0" layoutY="156.0" prefWidth="150.0" />
+      <TextField fx:id="txtDescripcion" editable="false" layoutX="149.0" layoutY="59.0" prefHeight="25.0" prefWidth="194.0" />
+      <TextField fx:id="txtPrecioUnitario" editable="false" layoutX="472.0" layoutY="105.0" prefHeight="25.0" prefWidth="194.0" />
+      <TextField fx:id="txtExistencias" editable="false" layoutX="149.0" layoutY="147.0" prefHeight="25.0" prefWidth="194.0" />
+      <TextField fx:id="txtImagen" editable="false" layoutX="472.0" layoutY="59.0" prefHeight="25.0" prefWidth="194.0" />
+      <ComboBox fx:id="cbxCategorias" disable="true" layoutX="472.0" layoutY="156.0" prefWidth="150.0" />
       <Label layoutX="409.0" layoutY="160.0" text="Categorias" />
+      <Button fx:id="btnEditar" layoutX="232.0" layoutY="486.0" mnemonicParsing="false" onAction="#modificar" text="Editar " />
+      <TextField fx:id="txtPrecioMayoristas" editable="false" layoutX="149.0" layoutY="105.0" />
    </children>
 </AnchorPane>
