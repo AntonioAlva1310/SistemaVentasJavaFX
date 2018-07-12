@@ -5,6 +5,7 @@ import com.comercio.core.controller.CategoriaController;
 import com.comercio.core.controller.ProductoController;
 import com.comercio.core.controller.RolController;
 import com.comercio.core.controller.UsuarioController;
+import com.comercio.core.dao.RolDaoImpl;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,18 +24,19 @@ import javafx.stage.Stage;
 public class Principal extends Application {
     private Stage escenarioPrincipal;
     private final String PAQUETE_VISTA = "/com/comercio/core/view/";
-    
+    private RolDaoImpl prueba = new RolDaoImpl();
     
     public void start(Stage escenarioPrincipal) {
         this.escenarioPrincipal = escenarioPrincipal;
         this.escenarioPrincipal.setTitle("Sistema Ventas V 1.0");
-       
+        
        //mostrarHelloWorld();
        //mostrarRelacionar();
 //mostrarVentanaProductos();
-mostrarVentanaRoles();
-//mostrarVentanaUsuarios();
+//mostrarVentanaRoles();
+mostrarVentanaUsuarios();
 //mostrarVentanaCategorias();
+
         this.escenarioPrincipal.show();
     }
 
@@ -82,12 +84,13 @@ mostrarVentanaRoles();
         
         try{
             UsuarioController usuarioController= (UsuarioController)
-                                    cambiarEscena("UsuariosView.fxml",600,400);
+                                    cambiarEscena("UsuariosView.fxml",800,500);
         }catch (Exception e){
         
         e.printStackTrace();
+         }
     }
-    }
+    
     //Metodo para cambiar el escenario principal
     public Initializable cambiarEscena(String fxml, int ancho, int alto) throws IOException{
         Initializable resultado = null;

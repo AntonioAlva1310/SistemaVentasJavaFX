@@ -7,8 +7,8 @@ import java.util.List;
 public interface UsuarioDao {
     public List<Usuario> findAllUsuarios();
     public Usuario findByIdUsuario(int codigoUsuario);
-    public Usuario findByEmailUsuario(String email);
-    public Usuario findByLoginAndPassword(String login, String passoword);
+    public Usuario findByNombreUsuario(String nombre);
+   
     public void saveUsuario(Usuario elemento);
     public void deleteUsuario(Usuario elemento);
     public void updateUsuario(Usuario elemento);

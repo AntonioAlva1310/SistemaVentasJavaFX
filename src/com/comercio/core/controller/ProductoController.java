@@ -225,7 +225,6 @@ public void guardar(){
          
          }
      }
-     
      public void modificar(){
          if (tblProductos.getSelectionModel().getSelectedItem() != null){
              

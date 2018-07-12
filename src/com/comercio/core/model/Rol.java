@@ -32,16 +32,14 @@ public class Rol implements Serializable{
         this.descripcion= new SimpleStringProperty();
         
     }
-    public Rol(int  codigoRol, String descripcion){
+    public Rol(int codigoRol, String descripcion){
         
         this.codigoRol= new SimpleIntegerProperty(codigoRol);
         this.descripcion= new SimpleStringProperty(descripcion);
         
 
     }
-     public IntegerProperty codigoRol() {
-        return codigoRol;
-    }
+     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="codigo_rol")
@@ -51,6 +49,11 @@ public class Rol implements Serializable{
     public void setCodigo(int codigRol){
         this.codigoRol.set(codigRol);
     }
+    
+    public IntegerProperty codigoRol() {
+        return codigoRol;
+    }
+
     @Column(name="descripcion")
     public String getDescripcion(){
         return this.descripcion.get();
@@ -61,7 +64,7 @@ public class Rol implements Serializable{
     public StringProperty descripcion() {        
         return descripcion;
     }
-    @OneToMany(mappedBy  = "rol")
+    @OneToMany(mappedBy = "rol")
     public Set<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -69,7 +72,10 @@ public class Rol implements Serializable{
     public void setUsuarios(Set<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
-    
+    @Override
+    public String toString() {
+        return  descripcion.get();
+    }
 }
 
 

@@ -23,23 +23,23 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 @Entity
 @Table(name="usuario")
-@NamedQueries({@NamedQuery(name="Usuario.findAll",  query="from Usuario")})
+@NamedQueries({@NamedQuery(name="Usuario.findAll",query="from Usuario")})
 public class Usuario implements Serializable {
-    private final IntegerProperty codigo;
+    private final IntegerProperty codigoUsuario;
     private final StringProperty nombre;
     private final StringProperty login;
     private final StringProperty password;
     private final StringProperty email;    
     private Rol rol;
     public Usuario() {
-        this.codigo = new SimpleIntegerProperty();
+        this.codigoUsuario = new SimpleIntegerProperty();
         this.nombre = new SimpleStringProperty("");
         this.login = new SimpleStringProperty("");
         this.password = new SimpleStringProperty("");
         this.email = new SimpleStringProperty("");
     }    
-    public Usuario(int codigo, String nombre, String login, String password, String email) {
-        this.codigo = new SimpleIntegerProperty(codigo);
+    public Usuario(int codigoUsuario, String nombre, String login, String password, String email) {
+        this.codigoUsuario = new SimpleIntegerProperty(codigoUsuario);
         this.nombre = new SimpleStringProperty(nombre);
         this.login = new SimpleStringProperty(login);
         this.password = new SimpleStringProperty(password);
@@ -49,16 +49,16 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="codigo_usuario")
-    public int getCodigo() {
-        return codigo.get();
+    public int getCodigoUsuario() {
+        return codigoUsuario.get();
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo.set(codigo);
+    public void setCodigoUsuario(int codigoUsuario) {
+        this.codigoUsuario.set(codigoUsuario);
     }
     
-    public IntegerProperty codigo(){
-        return this.codigo;
+    public IntegerProperty codigoUsuario(){
+        return this.codigoUsuario;
     }
     @Column(name="nombre")
     public String getNombre() {
@@ -111,7 +111,7 @@ public class Usuario implements Serializable {
         return this.email;
     }
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="codigo_rol")
+    @JoinColumn(name="codigo_rol", updatable=false, insertable=true, nullable=false )
     public Rol getRol() {
         return rol;
     }

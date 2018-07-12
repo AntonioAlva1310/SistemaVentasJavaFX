@@ -16,12 +16,16 @@ public class RolDaoImpl implements RolDao {
     }
     @Override
     public Rol findRolByDescripcion(String descripcion) {
-        return (Rol)Conexion
+        List<Rol> rol= (List<Rol>)Conexion
                 .getInstancia()
                 .getEmm()
-                .createQuery("from Rol r where r.descripcion =: descripcion")
+                .createNamedQuery("select r from Rol r where r.descripcion =: descripcion")
                 .setParameter("descripcion",descripcion)
-                .getSingleResult();
+                .getResultList();
+        if (!rol.isEmpty()){
+            return rol.get(0);
+        }
+        return null;
     }
     @Override
     public void saveRol(Rol rol) {

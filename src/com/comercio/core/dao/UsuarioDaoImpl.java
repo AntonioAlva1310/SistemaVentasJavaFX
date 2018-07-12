@@ -18,32 +18,20 @@ public class UsuarioDaoImpl implements UsuarioDao {
     }
 
     @Override
-    public Usuario findByEmailUsuario(String email) {
-        return (Usuario)Conexion
-                .getInstancia()
-                .getEmm()
-                .createQuery("from Usuario where email =: email")
-                .setParameter("email",email);
-    }
-    @Override
-    public Usuario findByLoginAndPassword(String login, String password) {
-        List<Usuario> usuarios =
-                Conexion
-                .getInstancia()
-                .getEmm()
-                .createStoredProcedureQuery("sp_AutenticarUsuario",Usuario.class)                                                
-                .registerStoredProcedureParameter(1,String.class, ParameterMode.IN)
-                .registerStoredProcedureParameter(2,String.class, ParameterMode.IN)
-                .setParameter(1,login)
-                .setParameter(2,password)
+    public Usuario findByNombreUsuario(String nombre) {
+         List<Usuario>usuario;
+        usuario = (List<Usuario>) Conexion.getInstancia().getEmm()
+                .createNamedQuery("select u from Usuario u where u.nombre =: nombre")
+                .setParameter("nombre", nombre)
                 .getResultList();
-        if(usuarios.isEmpty()){
-           return null;
-        }else{
-           return usuarios.get(0);
-        }        
+        if (!usuario.isEmpty()) {
+            return usuario.get(0);
+        }
+        return null;
     }
+
     @Override
+    
     public void saveUsuario(Usuario elemento) {
         Conexion.getInstancia().save(elemento);
     }
